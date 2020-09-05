@@ -77,6 +77,18 @@ def resize_tensor():
     z = x.view(-1, 8)  # the size -1 is inferred from other dimensions
     print(x.size(), y.size(), z.size())
 
+def autograd_tensor():
+    print("autograd_tensor".center(48, '='))
+    x = torch.randn(1, 10, requires_grad=True)
+    print(x)
+    print(x.grad, x.grad_fn)
+    x.backward(torch.randn(1, 10))
+    print("backward")
+    print(x)
+    print(x.grad, x.grad_fn)
+
+
+
 if __name__ == "__main__":
     construct_tensor()
 
@@ -85,3 +97,5 @@ if __name__ == "__main__":
     operate_tensor()
 
     resize_tensor()
+
+    autograd_tensor()
